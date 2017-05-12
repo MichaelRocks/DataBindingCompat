@@ -6,5 +6,8 @@ build/
 .idea/
 *.iml
 
+# Android files
+local.properties
+
 # Gradle Wrapper
 !gradle/wrapper/gradle-wrapper.jar
