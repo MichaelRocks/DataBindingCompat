@@ -7,7 +7,6 @@ import io.michaelrocks.grip.GripFactory
 import io.michaelrocks.grip.mirrors.Type
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
-import processor.ViewDataBindingClassPatcher
 import java.io.Closeable
 import java.io.File
 import java.io.InputStream

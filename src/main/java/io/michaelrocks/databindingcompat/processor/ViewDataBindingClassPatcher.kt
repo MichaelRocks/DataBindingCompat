@@ -1,6 +1,5 @@
-package processor
+package io.michaelrocks.databindingcompat.processor
 
-import io.michaelrocks.databindingcompat.processor.Types
 import io.michaelrocks.grip.mirrors.toAsmType
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
