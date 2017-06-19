@@ -1,3 +1,6 @@
 rootProject.name = 'databindingcompat'
 
-include ':plugin', ':sample'
+include ':plugin'
+if (!properties['bootstrap'].toBoolean()) {
+  include ':sample'
+}
