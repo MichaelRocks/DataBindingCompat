@@ -58,9 +58,7 @@ class DataBindingCompatTransform(private val android: BaseExtension) : Transform
   override fun getReferencedScopes(): MutableSet<in QualifiedContent.Scope> {
     return EnumSet.of(
         QualifiedContent.Scope.PROJECT,
-        QualifiedContent.Scope.PROJECT_LOCAL_DEPS,
         QualifiedContent.Scope.SUB_PROJECTS,
-        QualifiedContent.Scope.SUB_PROJECTS_LOCAL_DEPS,
         QualifiedContent.Scope.PROVIDED_ONLY
     )
   }
