@@ -39,7 +39,9 @@ class DataBindingCompatProcessor(private val transformSet: TransformSet) : Close
 
   fun process() {
     logger.info("Starting DataBindingCompat")
+
     if (logger.isDebugEnabled) {
+      transformSet.dump()
       logger.debug("Classpath:\n  {}", grip.fileRegistry.classpath().joinToString(separator = "\n  "))
     }
 
@@ -48,14 +50,35 @@ class DataBindingCompatProcessor(private val transformSet: TransformSet) : Close
       return
     }
 
-    patchViewDataBindingClass()
+    if (maybePatchViewDataBindingClass()) {
+      logger.info("Patched ViewDataBinding successfully")
+    }
   }
 
-  private fun patchViewDataBindingClass() {
-    val data = createPatchedViewDataBindingClass()
+  private fun TransformSet.dump() {
+    logger.debug("Transform set:")
+    logger.debug("  Units:\n    {}", units.joinToString(separator = "\n    "))
+    logger.debug("  Referenced units:\n    {}", referencedUnits.joinToString(separator = "\n    "))
+    logger.debug("  Boot classpath:\n    {}", bootClasspath.joinToString(separator = "\n    "))
+  }
+
+  private fun maybePatchViewDataBindingClass(): Boolean {
     val input = findViewDataBindingClassFile()
-    val output = findTransformUnitForInputFile(input)
-    savePatchedViewDataBindingClass(output, data)
+    if (input == null) {
+      logger.info("ViewDataBinding class not found. Aborting...")
+      return false
+    }
+
+    val unit = findTransformUnitForInputFile(input)
+    if (unit == null) {
+      logger.info("ViewDataBinding class cannot be transformed. Aborting...")
+      return false
+    }
+
+    logger.info("Patching ViewDataBinding.class: {}", unit)
+    val data = createPatchedViewDataBindingClass()
+    savePatchedViewDataBindingClass(unit, data)
+    return true
   }
 
   private fun createPatchedViewDataBindingClass(): ByteArray {
@@ -68,13 +91,13 @@ class DataBindingCompatProcessor(private val transformSet: TransformSet) : Close
     return writer.toByteArray()
   }
 
-  private fun findViewDataBindingClassFile(): File {
-    val file = grip.fileRegistry.findFileForType(Types.VIEW_DATA_BINDING)
-    return checkNotNull(file) { "Cannot find ViewDataBinding class" }
+  private fun findViewDataBindingClassFile(): File? {
+    return grip.fileRegistry.findFileForType(Types.VIEW_DATA_BINDING)
   }
 
-  private fun findTransformUnitForInputFile(input: File): TransformUnit {
-    return transformSet.units.first { it.input == input }
+  private fun findTransformUnitForInputFile(input: File): TransformUnit? {
+    val canonicalInput = input.canonicalFile
+    return transformSet.units.firstOrNull { it.input.canonicalFile == canonicalInput }
   }
 
   private fun savePatchedViewDataBindingClass(unit: TransformUnit, data: ByteArray) {
