@@ -10,6 +10,8 @@ android:
     - extra
     - extra-android-m2repository
 
+jdk: oraclejdk8
+
 sudo: false
 
 before_cache:
