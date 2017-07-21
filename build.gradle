@@ -28,7 +28,7 @@ allprojects {
 
   ext.kotlinVersion = '1.1.3-2'
   ext.asmVersion = '5.2'
-  ext.gripVersion = '0.5.2-beta'
+  ext.gripVersion = '0.5.3-beta'
   ext.logbackVersion = '1.2.2'
   ext.androidToolsVersion = '3.0.0-alpha7'
 }
