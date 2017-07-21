@@ -30,5 +30,5 @@ allprojects {
   ext.asmVersion = '5.2'
   ext.gripVersion = '0.5.2-beta'
   ext.logbackVersion = '1.2.2'
-  ext.androidToolsVersion = '3.0.0-alpha4'
+  ext.androidToolsVersion = '3.0.0-alpha7'
 }
