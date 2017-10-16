@@ -1,6 +1,6 @@
 package io.michaelrocks.databindingcompat
 
-import com.android.build.gradle.internal.Version
+import com.android.builder.model.Version
 
 object PluginVersion {
   val major: Int
