@@ -26,9 +26,9 @@ allprojects {
   ext.dryRun = properties['version.dryRun'].toBoolean()
   ext.publish = properties['version.publish'].toBoolean()
 
-  ext.kotlinVersion = '1.1.51'
-  ext.asmVersion = '5.2'
-  ext.gripVersion = '0.5.3-beta'
+  ext.kotlinVersion = '1.2.41'
+  ext.asmVersion = '6.1.1'
+  ext.gripVersion = '0.6.2-beta'
   ext.logbackVersion = '1.2.3'
-  ext.androidToolsVersion = '3.0.0-rc1'
+  ext.androidToolsVersion = '3.1.2'
 }
