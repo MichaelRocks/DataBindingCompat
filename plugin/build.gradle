@@ -9,8 +9,8 @@ dependencies {
   compileOnly "com.android.tools.build:gradle:$androidToolsVersion"
   compileOnly "com.android.tools.build:gradle-api:$androidToolsVersion"
 
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-  compile "ch.qos.logback:logback-classic:$logbackVersion"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+  implementation "ch.qos.logback:logback-classic:$logbackVersion"
 
   relocate "org.ow2.asm:asm:$asmVersion"
   relocate "org.ow2.asm:asm-commons:$asmVersion"
