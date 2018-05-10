@@ -1,27 +1,30 @@
-buildscript {
-  dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-  }
-}
-
 apply plugin: 'kotlin'
-apply plugin: 'bintray'
+apply plugin: 'io.michaelrocks.pablo'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-  compile gradleApi()
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
-  compile "org.ow2.asm:asm:$asmVersion"
-  compile "org.ow2.asm:asm-commons:$asmVersion"
-  compile "io.michaelrocks:grip:$gripVersion"
-  compile "ch.qos.logback:logback-classic:$logbackVersion"
-
+  compileOnly gradleApi()
   compileOnly "com.android.tools.build:gradle:$androidToolsVersion"
   compileOnly "com.android.tools.build:gradle-api:$androidToolsVersion"
+
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+  compile "ch.qos.logback:logback-classic:$logbackVersion"
+
+  relocate "org.ow2.asm:asm:$asmVersion"
+  relocate "org.ow2.asm:asm-commons:$asmVersion"
+  relocate "io.michaelrocks:grip:$gripVersion"
 }
 
-maven {
+pablo {
   artifactName = 'databindingcompat'
+  repackage true
 }
+
+shadowJar {
+  relocate 'io.michaelrocks.databindingcompat', 'io.michaelrocks.databindingcompat'
+  relocate 'io.michaelrocks.grip', 'io.michaelrocks.databindingcompat.grip'
+  relocate 'org.objectweb.asm', 'io.michaelrocks.databindingcompat.asm'
+}
+
