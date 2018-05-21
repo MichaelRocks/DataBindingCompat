@@ -1,7 +1,7 @@
 buildscript {
   dependencies {
     classpath "com.android.tools.build:gradle:$androidToolsVersion"
-    classpath "io.michaelrocks:databindingcompat:$version:repack"
+    classpath "io.michaelrocks:databindingcompat:$version"
   }
 }
 
