@@ -45,7 +45,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'io.michaelrocks:databindingcompat:1.1.4'
+    classpath 'io.michaelrocks:databindingcompat:1.1.5'
   }
 }
 
