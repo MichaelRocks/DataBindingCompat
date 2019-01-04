@@ -16,9 +16,10 @@
 
 package io.michaelrocks.databindingcompat.sample;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import io.michaelrocks.databindingcompat.sample.databinding.MainActivityBinding;
 
 public class MainActivity extends AppCompatActivity {
