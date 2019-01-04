@@ -9,13 +9,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.michaelrocks.databindingcompat'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion "27.0.3"
+  compileSdkVersion 28
+  buildToolsVersion "28.0.3"
 
   defaultConfig {
     applicationId "io.michaelrocks.databindingcompat.sample"
     minSdkVersion 16
-    targetSdkVersion 27
+    targetSdkVersion 28
     versionCode 1
     versionName version
 
@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-  implementation 'com.android.support:appcompat-v7:27.1.1'
+  implementation 'com.android.support:appcompat-v7:28.0.0'
 
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -2,12 +2,12 @@ allprojects {
   version = '1.1.5'
   group = 'io.michaelrocks'
 
-  ext.kotlinVersion = '1.2.41'
-  ext.pabloVersion = '1.0.2'
-  ext.asmVersion = '6.1.1'
-  ext.gripVersion = '0.6.2-beta'
+  ext.kotlinVersion = '1.3.11'
+  ext.pabloVersion = '1.0.3'
+  ext.asmVersion = '7.0'
+  ext.gripVersion = '0.6.3-beta'
   ext.logbackVersion = '1.2.3'
-  ext.androidToolsVersion = '3.1.2'
+  ext.androidToolsVersion = '3.2.1'
 
   buildscript {
     repositories {
