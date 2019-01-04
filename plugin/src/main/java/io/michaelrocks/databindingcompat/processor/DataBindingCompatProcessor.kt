@@ -32,7 +32,6 @@ import java.util.jar.JarInputStream
 import java.util.jar.JarOutputStream
 import java.util.jar.Manifest
 
-
 class DataBindingCompatProcessor(private val transformSet: TransformSet) : Closeable {
   private val logger = getLogger()
   private val grip = GripFactory.create(transformSet.getClasspath())
@@ -74,8 +73,8 @@ class DataBindingCompatProcessor(private val transformSet: TransformSet) : Close
   }
 
   private inner class Patch(
-      private val viewDataBindingType: Type.Object,
-      private val appCompatResourcesType: Type.Object
+    private val viewDataBindingType: Type.Object,
+    private val appCompatResourcesType: Type.Object
   ) {
 
     fun maybeApply(): Boolean {

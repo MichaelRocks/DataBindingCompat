@@ -23,7 +23,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.UnknownDomainObjectException
 
-class DataBindingCompatPlugin : Plugin<Project>  {
+class DataBindingCompatPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     try {
       val android = project.extensions.getByName("android") as BaseExtension

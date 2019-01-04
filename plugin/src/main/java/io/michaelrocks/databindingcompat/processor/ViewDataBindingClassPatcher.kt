@@ -25,15 +25,16 @@ import org.objectweb.asm.commons.GeneratorAdapter
 import org.objectweb.asm.commons.Method
 
 class ViewDataBindingClassPatcher(
-    visitor: ClassVisitor?,
-    private val appCompatResourcesType: Type.Object
+  visitor: ClassVisitor?,
+  private val appCompatResourcesType: Type.Object
 ) : ClassVisitor(Opcodes.ASM5, visitor) {
+
   override fun visitMethod(
-      access: Int,
-      name: String,
-      desc: String,
-      signature: String?,
-      exceptions: Array<out String>?
+    access: Int,
+    name: String,
+    desc: String,
+    signature: String?,
+    exceptions: Array<out String>?
   ): MethodVisitor? {
     val visitor = super.visitMethod(access, name, desc, signature, exceptions)
     if (name == "getDrawableFromResource" && desc == "(Landroid/view/View;I)Landroid/graphics/drawable/Drawable;") {
@@ -63,10 +64,10 @@ class ViewDataBindingClassPatcher(
 
   companion object {
     val APP_COMPAT_RESOURCES_GET_DRAWABLE_METHOD =
-        Method("getDrawable", "(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;")
+      Method("getDrawable", "(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;")
     val APP_COMPAT_RESOURCES_GET_COLOR_STATE_LIST_METHOD =
-        Method("getColorStateList", "(Landroid/content/Context;I)Landroid/content/res/ColorStateList;")
+      Method("getColorStateList", "(Landroid/content/Context;I)Landroid/content/res/ColorStateList;")
     val VIEW_GET_CONTEXT_METHOD =
-        Method("getContext", "()Landroid/content/Context;")
+      Method("getContext", "()Landroid/content/Context;")
   }
 }

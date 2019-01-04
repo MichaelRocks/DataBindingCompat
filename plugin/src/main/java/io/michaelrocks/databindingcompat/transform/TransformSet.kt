@@ -25,10 +25,11 @@ import com.android.build.api.transform.TransformInvocation
 import java.io.File
 
 class TransformSet private constructor(
-    val units: List<TransformUnit>,
-    val referencedUnits: List<TransformUnit>,
-    val bootClasspath: List<File>
+  val units: List<TransformUnit>,
+  val referencedUnits: List<TransformUnit>,
+  val bootClasspath: List<File>
 ) {
+
   companion object {
     fun create(invocation: TransformInvocation, bootClasspath: List<File>): TransformSet {
       val units = createTransformUnits(invocation, invocation.inputs)
@@ -37,8 +38,8 @@ class TransformSet private constructor(
     }
 
     private fun createTransformUnits(
-        invocation: TransformInvocation,
-        inputs: Collection<TransformInput>
+      invocation: TransformInvocation,
+      inputs: Collection<TransformInput>
     ): List<TransformUnit> {
       return inputs.flatMap { input ->
         val units = ArrayList<TransformUnit>(input.directoryInputs.size + input.jarInputs.size)
@@ -52,9 +53,9 @@ class TransformSet private constructor(
     }
 
     private fun createTransformUnit(
-        invocation: TransformInvocation,
-        input: QualifiedContent,
-        format: Format
+      invocation: TransformInvocation,
+      input: QualifiedContent,
+      format: Format
     ): TransformUnit {
       val output = invocation.outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, format)
       val statusProvider = input.createStatusProvider(invocation.isIncremental)
