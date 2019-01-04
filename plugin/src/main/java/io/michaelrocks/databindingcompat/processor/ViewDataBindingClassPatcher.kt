@@ -16,6 +16,7 @@
 
 package io.michaelrocks.databindingcompat.processor
 
+import io.michaelrocks.grip.mirrors.Type
 import io.michaelrocks.grip.mirrors.toAsmType
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
@@ -23,7 +24,10 @@ import org.objectweb.asm.Opcodes
 import org.objectweb.asm.commons.GeneratorAdapter
 import org.objectweb.asm.commons.Method
 
-class ViewDataBindingClassPatcher(visitor: ClassVisitor?) : ClassVisitor(Opcodes.ASM5, visitor) {
+class ViewDataBindingClassPatcher(
+    visitor: ClassVisitor?,
+    private val appCompatResourcesType: Type.Object
+) : ClassVisitor(Opcodes.ASM5, visitor) {
   override fun visitMethod(
       access: Int,
       name: String,
@@ -51,7 +55,7 @@ class ViewDataBindingClassPatcher(visitor: ClassVisitor?) : ClassVisitor(Opcodes
       loadArg(0)
       invokeVirtual(Types.VIEW.toAsmType(), VIEW_GET_CONTEXT_METHOD)
       loadArg(1)
-      invokeStatic(Types.APP_COMPAT_RESOURCES.toAsmType(), method)
+      invokeStatic(appCompatResourcesType.toAsmType(), method)
       returnValue()
       endMethod()
     }

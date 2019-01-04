@@ -19,7 +19,9 @@ package io.michaelrocks.databindingcompat.processor
 import io.michaelrocks.grip.mirrors.getObjectTypeByInternalName
 
 object Types {
-  val APP_COMPAT_RESOURCES = getObjectTypeByInternalName("android/support/v7/content/res/AppCompatResources")
-  val VIEW_DATA_BINDING = getObjectTypeByInternalName("android/databinding/ViewDataBinding")
+  val ANDROIDX_APP_COMPAT_RESOURCES = getObjectTypeByInternalName("androidx/appcompat/content/res/AppCompatResources")
+  val ANDROIDX_VIEW_DATA_BINDING = getObjectTypeByInternalName("androidx/databinding/ViewDataBinding")
+  val SUPPORT_APP_COMPAT_RESOURCES = getObjectTypeByInternalName("android/support/v7/content/res/AppCompatResources")
+  val SUPPORT_VIEW_DATA_BINDING = getObjectTypeByInternalName("android/databinding/ViewDataBinding")
   val VIEW = getObjectTypeByInternalName("android/view/View")
 }
