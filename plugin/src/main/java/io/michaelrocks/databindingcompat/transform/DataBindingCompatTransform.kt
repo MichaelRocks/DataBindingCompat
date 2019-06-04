@@ -33,8 +33,13 @@ class DataBindingCompatTransform(private val android: BaseExtension) : Transform
   private val logger = getLogger()
 
   override fun transform(invocation: TransformInvocation) {
+    if (!invocation.isIncremental) {
+      invocation.outputProvider.deleteAll()
+    }
+
     val transformationSet = TransformSet.create(invocation, android.bootClasspath)
     transformationSet.copyInputsToOutputs()
+
     DataBindingCompatProcessor(transformationSet).use { processor ->
       try {
         processor.process()
