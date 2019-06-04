@@ -111,7 +111,8 @@ class DataBindingCompatProcessor(private val transformSet: TransformSet) : Close
 
     private fun findTransformUnitForInputFile(input: File): TransformUnit? {
       val canonicalInput = input.canonicalFile
-      return transformSet.units.firstOrNull { it.input.canonicalFile == canonicalInput }
+      val units = transformSet.units.filter { it.changes.status != TransformUnit.Status.REMOVED }
+      return units.firstOrNull { it.input.canonicalFile == canonicalInput }
     }
 
     private fun savePatchedViewDataBindingClass(unit: TransformUnit, data: ByteArray) {
