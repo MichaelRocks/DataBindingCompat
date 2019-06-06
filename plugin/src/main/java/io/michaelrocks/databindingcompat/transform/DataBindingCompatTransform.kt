@@ -106,12 +106,10 @@ class DataBindingCompatTransform(private val android: BaseExtension) : Transform
     logger.info("Incremental directory change: {} -> {}", this, target)
     target.mkdirs()
     changes.files.forEach { file ->
-      if (file.isFile) {
-        val status = changes.getFileStatus(file)
-        val relativePath = file.toRelativeString(this)
-        val targetFile = File(target, relativePath)
-        file.applyChangesTo(targetFile, status)
-      }
+      val status = changes.getFileStatus(file)
+      val relativePath = file.toRelativeString(this)
+      val targetFile = File(target, relativePath)
+      file.applyChangesTo(targetFile, status)
     }
   }
 
@@ -120,14 +118,19 @@ class DataBindingCompatTransform(private val android: BaseExtension) : Transform
     applyChangesTo(target, changes.status)
   }
 
-  private fun File.applyChangesTo(target: File, status: TransformUnit.Status) {
+  private fun File.applyChangesTo(target: File, status: Status) {
     logger.debug("Incremental file change ({}): {} -> {}", status, this, target)
     when (status) {
       Status.UNCHANGED -> return
-      Status.REMOVED -> target.delete()
-      Status.ADDED -> copyTo(target, true)
-      Status.CHANGED -> copyTo(target, true)
+      Status.REMOVED -> target.deleteRecursively()
+      Status.ADDED -> replaceRecursively(target)
+      Status.CHANGED -> replaceRecursively(target)
       Status.UNKNOWN -> applyChangesTo(target, if (exists()) Status.CHANGED else Status.REMOVED)
     }
+  }
+
+  private fun File.replaceRecursively(target: File) {
+    target.deleteRecursively()
+    copyRecursively(target, false)
   }
 }
