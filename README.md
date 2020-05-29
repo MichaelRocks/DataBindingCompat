@@ -1,5 +1,10 @@
 [![Build Status](https://travis-ci.org/MichaelRocks/DataBindingCompat.svg?branch=master)](https://travis-ci.org/MichaelRocks/DataBindingCompat)
 
+Deprecated
+==========
+
+`VectorDrawable`s are supported in DataBinding natively since [AGP 4.0.0](https://issuetracker.google.com/issues/123427765).
+
 DataBindingCompat
 =================
 
